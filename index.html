@@ -5,80 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redslate Films</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&display=swap');
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0a0a0a; color: #fff; font-family: 'Courier Prime', 'Courier New', monospace; }
+        body { background: #000; color: #fff; font-family: 'Courier Prime', monospace; }
         
-        nav { position: sticky; top: 0; z-index: 100; background: rgba(10, 10, 10, 0.98); border-bottom: 1px solid #222; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); }
-        nav a { color: #fff; text-decoration: none; margin-left: 3rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; }
+        /* NAVIGATION */
+        nav { position: sticky; top: 0; z-index: 100; background: #000; border-bottom: 2px solid #c41e3a; padding: 2rem 5rem; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: #fff; text-decoration: none; margin-left: 3.5rem; font-size: 0.9rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; transition: all 0.3s; }
         nav a:hover { color: #c41e3a; }
-        .logo-nav { font-size: 1.1rem; font-weight: bold; letter-spacing: 3px; }
+        .logo-nav { font-size: 1.3rem; font-weight: bold; letter-spacing: 4px; color: #c41e3a; }
         
-        #splash { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        #splash.hidden { opacity: 0; transform: scale(1.05); display: none; }
-        .splash-content h1 { font-size: 8rem; margin-bottom: 3rem; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8); letter-spacing: 4px; font-weight: bold; animation: titleGlow 1.2s ease-in-out; }
-        .splash-content p { font-size: 1.2rem; color: #999; letter-spacing: 2px; margin-bottom: 3rem; }
-        @keyframes titleGlow { from { opacity: 0; text-shadow: 0 0 20px rgba(196, 30, 58, 0.3); } to { opacity: 1; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8); } }
+        /* SPLASH */
+        #splash { min-height: 100vh; background: #000; display: flex; align-items: center; justify-content: center; text-align: center; }
+        #splash.hidden { display: none; }
+        .splash-content h1 { font-family: 'Bebas Neue', sans-serif; font-size: 10rem; letter-spacing: 8px; margin-bottom: 2rem; color: #fff; text-shadow: 0 0 80px #c41e3a; animation: splashGlow 1.5s ease-in-out; }
+        .splash-content p { font-size: 1.3rem; color: #c41e3a; letter-spacing: 3px; margin-bottom: 3rem; }
+        @keyframes splashGlow { from { opacity: 0; text-shadow: 0 0 20px #c41e3a; } to { opacity: 1; text-shadow: 0 0 80px #c41e3a; } }
         
-        #main { opacity: 0; transform: scale(0.95); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        #main.show { opacity: 1; transform: scale(1); }
+        #main { opacity: 0; transition: opacity 0.6s; }
+        #main.show { opacity: 1; }
         
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); padding: 4rem 2rem; position: relative; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(196, 30, 58, 0.05) 0%, transparent 70%); pointer-events: none; }
-        .hero-content { position: relative; z-index: 1; }
-        .hero-logo { max-width: 300px; margin: 0 auto 3rem; animation: logoFade 1s ease-in; }
-        .hero-logo img { width: 100%; height: auto; filter: drop-shadow(0 0 40px rgba(196, 30, 58, 0.3)); transition: filter 0.3s; }
-        .hero-logo img:hover { filter: drop-shadow(0 0 60px rgba(196, 30, 58, 0.6)); }
-        @keyframes logoFade { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; letter-spacing: 3px; font-weight: bold; }
-        .hero p { font-size: 1.1rem; color: #999; letter-spacing: 1px; margin-bottom: 3rem; }
+        /* HERO */
+        .hero { min-height: 100vh; background: #000; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; position: relative; border-bottom: 3px solid #c41e3a; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, rgba(196, 30, 58, 0.1) 0%, transparent 50%, rgba(196, 30, 58, 0.1) 100%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero-logo { max-width: 350px; margin: 0 auto 3rem; }
+        .hero-logo img { width: 100%; filter: drop-shadow(0 0 50px #c41e3a); }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; letter-spacing: 6px; margin-bottom: 1rem; }
+        .hero p { font-size: 1.4rem; color: #c41e3a; letter-spacing: 2px; margin-bottom: 3rem; font-weight: bold; }
         
-        .btn { padding: 15px 50px; background: #c41e3a; color: white; text-decoration: none; font-size: 0.95rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; display: inline-block; font-weight: bold; }
-        .btn:hover { background: #a01729; transform: translateY(-3px); box-shadow: 0 10px 40px rgba(196, 30, 58, 0.4); }
+        /* BUTTONS */
+        .btn { padding: 18px 50px; background: #c41e3a; color: #fff; text-decoration: none; font-size: 1rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; transition: all 0.3s; display: inline-block; margin: 0 1rem; }
+        .btn:hover { background: #fff; color: #000; box-shadow: 0 0 40px #c41e3a; }
         
-        section { padding: 120px 4rem; max-width: 1400px; margin: 0 auto; }
-        section h2 { font-size: 3.5rem; margin-bottom: 3rem; color: #c41e3a; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; }
-        section p { font-size: 1.1rem; color: #aaa; line-height: 1.8; max-width: 700px; margin-bottom: 2rem; }
+        /* SECTIONS */
+        section { padding: 140px 5rem; max-width: 1600px; margin: 0 auto; border-bottom: 2px solid #c41e3a; }
+        section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; letter-spacing: 6px; margin-bottom: 3rem; color: #fff; }
+        section p { font-size: 1.15rem; line-height: 1.8; max-width: 800px; margin-bottom: 2rem; }
         
-        #shop { background: #0a0a0a; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+        #shop { background: #000; }
+        #shorts { background: #000; }
+        #features { background: #000; }
+        #events { background: #000; }
+        #podcast { background: #000; }
+        #animation { background: #000; }
         
-        /* FILMS GRID */
-        #films { background: #1a1a1a; border-top: 1px solid #222; }
-        #films h2 { text-align: center; }
+        /* GRIDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 80px; }
         
-        .films-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
+        .tile { position: relative; aspect-ratio: 2/3; overflow: hidden; border: 2px solid #c41e3a; }
+        .tile img { width: 100%; height: 100%; object-fit: cover; transition: all 0.4s; }
+        .tile:hover img { transform: scale(1.1); }
         
-        .film-tile { position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; aspect-ratio: 2/3; }
-        .film-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-        .film-tile:hover img { transform: scale(1.05); }
+        .overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2.5rem; text-align: center; opacity: 0; transition: opacity 0.4s; }
+        .tile:hover .overlay { opacity: 1; }
         
-        .film-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.95); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; opacity: 0; transition: opacity 0.3s; }
-        .film-tile:hover .film-overlay { opacity: 1; }
+        .title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 2px; margin-bottom: 1.5rem; color: #c41e3a; }
+        .synopsis { font-size: 1rem; color: #fff; line-height: 1.7; margin-bottom: 2rem; }
         
-        .film-title { font-size: 1.5rem; margin-bottom: 1rem; font-weight: bold; letter-spacing: 1px; }
-        .film-synopsis { font-size: 0.95rem; color: #aaa; line-height: 1.6; margin-bottom: 1.5rem; }
+        .buttons { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
+        .link-btn { padding: 10px 20px; background: #c41e3a; color: #fff; text-decoration: none; font-size: 0.9rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; transition: all 0.3s; }
+        .link-btn:hover { background: #fff; color: #000; }
         
-        .film-buttons { display: flex; flex-direction: column; gap: 0.8rem; width: 100%; }
-        .film-btn { padding: 8px 16px; background: #c41e3a; color: white; text-decoration: none; font-size: 0.85rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; border-radius: 2px; }
-        .film-btn:hover { background: #a01729; }
-        
-        /* PODCAST SECTION */
-        #podcast { background: #0a0a0a; border-top: 1px solid #222; }
-        
-        /* ANIMATION SECTION */
-        #animation { background: #1a1a1a; border-top: 1px solid #222; }
+        /* EVENTS */
+        .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; margin-top: 80px; }
+        .event-card { background: #000; border: 2px solid #c41e3a; padding: 3rem; }
+        .event-date { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #c41e3a; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .event-location { font-size: 1.1rem; color: #fff; margin-bottom: 1.5rem; }
+        .event-card p { margin-bottom: 2rem; }
         
         /* FOOTER */
-        footer { background: #000; border-top: 1px solid #222; padding: 4rem; text-align: center; }
-        .social-links { margin: 2rem 0; display: flex; justify-content: center; gap: 2rem; }
-        .social-links a { color: #c41e3a; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        footer { background: #000; border-top: 3px solid #c41e3a; padding: 5rem; text-align: center; }
+        .social-links { margin: 2rem 0; display: flex; justify-content: center; gap: 3rem; }
+        .social-links a { color: #c41e3a; text-decoration: none; font-size: 1.1rem; font-weight: bold; letter-spacing: 2px; transition: color 0.3s; }
         .social-links a:hover { color: #fff; }
-        .footer-text { color: #666; font-size: 0.9rem; letter-spacing: 1px; }
+        .footer-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 3px; color: #c41e3a; }
         
         @media (max-width: 768px) {
-            nav { padding: 1rem 2rem; }
+            nav { padding: 1.5rem 2rem; }
             nav a { margin-left: 1.5rem; font-size: 0.8rem; }
             section { padding: 80px 2rem; }
-            .films-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+            .splash-content h1 { font-size: 6rem; }
+            .hero h1 { font-size: 4rem; }
+            section h2 { font-size: 3.5rem; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -86,7 +97,7 @@
     <div id="splash">
         <div class="splash-content">
             <h1>REDSLATE FILMS</h1>
-            <p>Coming Soon</p>
+            <p>Stories Worth Remembering</p>
             <button class="btn" onclick="enterSite()">Enter</button>
         </div>
     </div>
@@ -98,58 +109,71 @@
             <div class="logo-nav">REDSLATE</div>
             <div>
                 <a href="#shop">🛍️ Shop</a>
-                <a href="#films">🎬 Films</a>
-                <a href="#podcast">🎧 Podcast</a>
+                <a href="#shorts">🎬 Shorts</a>
+                <a href="#features">🎬 Features</a>
+                <a href="#podcast">🎧 Actor 2 Actor</a>
                 <a href="#animation">🎨 Animation</a>
+                <a href="#events">🎟️ Events</a>
             </div>
         </nav>
 
         <div class="hero">
             <div class="hero-content">
                 <div class="hero-logo">
-                    <img src="redslate-films-logo.jpg" alt="Redslate Films Logo">
+                    <img src="redslate-films-logo.jpg" alt="Redslate Films">
                 </div>
                 <h1>REDSLATE FILMS</h1>
-                <p>Narrative Cinema</p>
+                <p>Stories Worth Remembering</p>
+                <button class="btn" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Explore Films</button>
             </div>
         </div>
 
         <section id="shop">
             <h2>🛍️ Shop</h2>
-            <p>Official Redslate Films merchandise. Limited edition apparel for film lovers and independent cinema enthusiasts.</p>
+            <p>Official Redslate Films merchandise. Limited edition apparel.</p>
             <a href="https://www.bonfire.com/store/redslate-films/" target="_blank" class="btn">Shop Now</a>
         </section>
 
-        <section id="films">
-            <h2>🎬 Films</h2>
-            <div class="films-grid" id="filmsGrid"></div>
+        <section id="shorts">
+            <h2>🎬 Shorts</h2>
+            <div class="grid" id="shortsGrid"></div>
+        </section>
+
+        <section id="features">
+            <h2>🎬 Features</h2>
+            <div class="grid" id="featuresGrid"></div>
+        </section>
+
+        <section id="events">
+            <h2>🎟️ Events</h2>
+            <div class="event-grid" id="eventsGrid"></div>
         </section>
 
         <section id="podcast">
-            <h2>🎧 Actor to Actor Podcast</h2>
-            <p>In-depth conversations between actors. Raw, honest, unfiltered dialogue about craft, collaboration, and creation.</p>
-            <p style="margin-top: 2rem; color: #888;">Coming Soon</p>
+            <h2>🎧 Actor 2 Actor</h2>
+            <p>In-depth conversations between actors. Raw, honest, unfiltered.</p>
+            <p style="margin-top: 2rem; color: #c41e3a;">Coming Soon</p>
         </section>
 
         <section id="animation">
             <h2>🎨 Animation</h2>
-            <p>Animated series in development. Innovative storytelling through animation.</p>
-            <p style="margin-top: 2rem; color: #888;">Coming Soon</p>
+            <p>Animated series in development.</p>
+            <p style="margin-top: 2rem; color: #c41e3a;">Coming Soon</p>
         </section>
 
         <footer>
             <p class="footer-text">REDSLATE FILMS</p>
             <div class="social-links">
-                <a href="https://www.facebook.com/RedSlateFilms" target="_blank">Facebook</a>
-                <a href="https://www.instagram.com/redslatefilms1/" target="_blank">Instagram</a>
-                <a href="https://www.tiktok.com/@redslated.films.o" target="_blank">TikTok</a>
+                <a href="https://www.facebook.com/RedSlateFilms" target="_blank">FACEBOOK</a>
+                <a href="https://www.instagram.com/redslatefilms1/" target="_blank">INSTAGRAM</a>
+                <a href="https://www.tiktok.com/@redslated.films.o" target="_blank">TIKTOK</a>
             </div>
-            <p class="footer-text" style="margin-top: 2rem;">&copy; 2026 Redslate Films. All rights reserved.</p>
+            <p class="footer-text" style="margin-top: 3rem;">&copy; 2026 Redslate Films</p>
         </footer>
     </div>
 
     <script>
-        const filmsData = [
+        const shortsData = [
             { file: '01_Waking_Moments.JPG', title: 'Waking Moments', synopsis: "A wife and mother's tragic loss brings life's diverse moments into clear and painful focus." },
             { file: '02.5_Quietus_Poster.jpg', title: 'Quietus', synopsis: 'After a devastating car accident leaves them stranded on a deserted rural road, a young couple seeks refuge in a lonely farmhouse, only to discover they may have crossed into a place where the dead are forced to confront what they left behind.' },
             { file: '03_Enough_Poster.jpg', title: 'Enough', synopsis: 'Emma takes James on a romantic weekend getaway but past problems and present secrets threaten the survival of their relationship.' },
@@ -162,31 +186,39 @@
             { file: '10_Bereavement.JPEG', title: 'Bereavement', synopsis: 'A woman must deal with the loss of a loved one.' },
             { file: '11_The_Transmission.JPG', title: 'The Transmission', synopsis: 'A father and daughter follow a mysterious signal deep within the woods to discover something that might not be of this world.' },
             { file: '12_Redneck_Ghost_Ranglers.PNG', title: 'Redneck Ghost Ranglers', synopsis: 'A group of ghost enthusiasts take their first real gig. As the night unfolds they may not want to hunt ghost again.' },
-            { file: '13_Done_Waiting.JPG', title: 'Done Waiting', synopsis: 'No longer willing to wait for the police to find his missing wife, a husband decides to take matters into his own hands and search for the people responsible for his wife\'s kidnapping. An old friend resurfaces and ends up helping him on his quest for vengeance.', hasLinks: true },
             { file: '14_War_Between_States.JPG', title: 'War Between States', synopsis: 'As the Civil War rages on, a Colonel leads his men during the battle of Gettysburg. He comes face to face with a Confederate soldier who helps him see the truth about what they\'re actually fighting for.' },
             { file: '15_Hexerei.jpeg', title: 'Hexerei', synopsis: 'A coven of witches seek to conjure a deity. Instead they got something they didn\'t expect.' },
             { file: '16_Blowback.JPG', title: 'Blowback', synopsis: 'After a shooting, a high school principal must come to grips with the fallout of the tragic event.' },
-            { file: '17_A_Quiet_Town_POC.JPEG', title: 'A Quiet Town (Proof of Concept)', synopsis: 'A man caught in the life of crime with his hardened brother Zeke fights to get out of the game by any means necessary. After a botched bank heist things begin to spiral out of control with everything he loves on the line.' },
+            { file: '17_A_Quiet_Town_POC.JPEG', title: 'A Quiet Town (Proof of Concept)', synopsis: 'A man caught in the life of crime with his hardened brother Zeke fights to get out of the game by any means necessary. After a botched bank heist things begin to spiral out of control with everything he loves on the line.' }
+        ];
+
+        const featuresData = [
+            { file: '13_Done_Waiting.JPG', title: 'Done Waiting', synopsis: 'No longer willing to wait for the police to find his missing wife, a husband decides to take matters into his own hands and search for the people responsible for his wife\'s kidnapping. An old friend resurfaces and ends up helping him on his quest for vengeance.', hasLinks: true },
             { file: '18_A_Quiet_Town.jpg', title: 'A Quiet Town', synopsis: 'After covering up his brother\'s deadly mistake, a small-town criminal forces him into a desperate bank heist to repay the debt. When the plan unravels, betrayal and violence erupt, tearing through their quiet Pennsylvania town.' }
         ];
 
-        function initFilmsGrid() {
-            const grid = document.getElementById('filmsGrid');
-            filmsData.forEach((film) => {
+        const eventsData = [
+            { date: 'September 12, 2026', location: 'Moonlite Drive-In, Brookville, PA', name: 'A Quiet Town Local Screening', link: 'https://ticketing.useast.veezi.com/purchase/487?siteToken=rghd0hk1qnfpgwh2a3w0wh6bsm' },
+            { date: 'September 20, 2026', location: 'Oaks Theater, Pittsburgh, PA', name: 'A Quiet Town Pittsburgh Premiere & Q&A', link: 'https://www.tixtree.com/e/a-quiet-town-pittsburgh-premiere-screening-filmmaker-qa-b01abd4ddd4a' }
+        ];
+
+        function buildGrid(data, gridId) {
+            const grid = document.getElementById(gridId);
+            data.forEach((item) => {
                 const tile = document.createElement('div');
-                tile.className = 'film-tile';
+                tile.className = 'tile';
                 tile.innerHTML = `
-                    <img src="posters/${film.file}" alt="${film.title}">
-                    <div class="film-overlay">
-                        <div class="film-title">${film.title}</div>
-                        <div class="film-synopsis">${film.synopsis}</div>
-                        ${film.hasLinks ? `
-                        <div class="film-buttons">
-                            <a href="https://tubitv.com/movies/100031631/done-waiting" target="_blank" class="film-btn">Watch on Tubi</a>
-                            <a href="https://fawesome.tv/movies/10649763/done-waiting" target="_blank" class="film-btn">Watch on Fawesome</a>
-                            <a href="https://www.walmart.com/ip/Done-Waiting-Blu-ray-Burning-Bulb-Mystery-Suspense/13641550615?classType=REGULAR" target="_blank" class="film-btn">Walmart</a>
-                            <a href="https://www.amazon.com/Done-Waiting-Blu-ray-Jesse-Hutchins/dp/B0DJVF3WNF/ref=sr_1_2?crid=PG4BNJDM4HJW&dib=eyJ2IjoiMSJ9.zliYmvychYg9HnJod52Xs3M3bZTG-3LqnfPWi-qwzgOmOqqjRUXJ4_VpUw-HnutGEJqtT9k9PGWdgaNHMsJgOqIb1lUSS9KN2O3sjSYRorIrDvIzi_XQbBtrCEF1BA4rCdDMNTQ87_cCVbYbGBTOLMsbJU-PnMA1Lftv_g7c4DIszfQekvSanUc4vmFrnEILGufRbkLBr1qKLMtrgxOprAkmnBExVF6kcZ6bChHJqoM.d4_CE30wdFQpG1Aenejs4gbmFMV7N5vEyPs_fNuadxA&dib_tag=se&keywords=Done+Waiting&qid=1780584632&sprefix=done+waiting%2Caps%2C510&sr=8-2" target="_blank" class="film-btn">Amazon</a>
-                            <a href="https://tv.apple.com/us/movie/done-waiting/umc.cmc.1y25mtw88kdckw6eadcni5nkd" target="_blank" class="film-btn">Apple TV</a>
+                    <img src="posters/${item.file}" alt="${item.title}">
+                    <div class="overlay">
+                        <div class="title">${item.title}</div>
+                        <div class="synopsis">${item.synopsis}</div>
+                        ${item.hasLinks ? `
+                        <div class="buttons">
+                            <a href="https://tubitv.com/movies/100031631/done-waiting" target="_blank" class="link-btn">Tubi</a>
+                            <a href="https://fawesome.tv/movies/10649763/done-waiting" target="_blank" class="link-btn">Fawesome</a>
+                            <a href="https://www.walmart.com/ip/Done-Waiting-Blu-ray-Burning-Bulb-Mystery-Suspense/13641550615?classType=REGULAR" target="_blank" class="link-btn">Walmart</a>
+                            <a href="https://www.amazon.com/Done-Waiting-Blu-ray-Jesse-Hutchins/dp/B0DJVF3WNF/ref=sr_1_2?crid=PG4BNJDM4HJW&dib=eyJ2IjoiMSJ9.zliYmvychYg9HnJod52Xs3M3bZTG-3LqnfPWi-qwzgOmOqqjRUXJ4_VpUw-HnutGEJqtT9k9PGWdgaNHMsJgOqIb1lUSS9KN2O3sjSYRorIrDvIzi_XQbBtrCEF1BA4rCdDMNTQ87_cCVbYbGBTOLMsbJU-PnMA1Lftv_g7c4DIszfQekvSanUc4vmFrnEILGufRbkLBr1qKLMtrgxOprAkmnBExVF6kcZ6bChHJqoM.d4_CE30wdFQpG1Aenejs4gbmFMV7N5vEyPs_fNuadxA&dib_tag=se&keywords=Done+Waiting&qid=1780584632&sprefix=done+waiting%2Caps%2C510&sr=8-2" target="_blank" class="link-btn">Amazon</a>
+                            <a href="https://tv.apple.com/us/movie/done-waiting/umc.cmc.1y25mtw88kdckw6eadcni5nkd" target="_blank" class="link-btn">Apple</a>
                         </div>
                         ` : ''}
                     </div>
@@ -195,18 +227,25 @@
             });
         }
 
+        function buildEvents() {
+            const grid = document.getElementById('eventsGrid');
+            eventsData.forEach((event) => {
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.innerHTML = `
+                    <div class="event-date">${event.date}</div>
+                    <div class="event-location">${event.location}</div>
+                    <p>${event.name}</p>
+                    <a href="${event.link}" target="_blank" class="btn">Buy Tickets</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
         function enterSite() {
             const audio = document.getElementById('fanfare');
             audio.src = 'audio/MECHMisc_Projector_Antique_B_On_Run_Off_05_BOURNE_SB-ANT_PnyfS.wav';
-            audio.play().catch(e => console.log('Audio play failed:', e));
+            audio.play().catch(e => console.log(''));
             document.getElementById('splash').classList.add('hidden');
             document.getElementById('main').classList.add('show');
             setTimeout(() => {
-                document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        }
-
-        window.addEventListener('load', initFilmsGrid);
-    </script>
-</body>
-</html>
