@@ -6,77 +6,87 @@
     <title>Redslate Films</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0a0a0a; color: #fff; font-family: 'Courier New', monospace; }
+        body { background: #0a0a0a; color: #fff; font-family: 'Courier Prime', 'Courier New', monospace; }
         
-        nav { position: sticky; top: 0; z-index: 100; background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #333; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        nav a { color: #fff; text-decoration: none; margin-left: 2rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(10, 10, 10, 0.98); border-bottom: 1px solid #222; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px); }
+        nav a { color: #fff; text-decoration: none; margin-left: 3rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; }
         nav a:hover { color: #c41e3a; }
-        .logo { font-size: 1.3rem; font-weight: bold; letter-spacing: 2px; }
+        .logo-nav { font-size: 1.1rem; font-weight: bold; letter-spacing: 3px; }
         
-        #splash { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); animation: splashFade 0.8s ease-in; }
+        #splash { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         #splash.hidden { opacity: 0; transform: scale(1.05); display: none; }
-        .splash-content h1 { font-size: 8rem; margin-bottom: 2rem; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8), 0 4px 20px rgba(0,0,0,0.9); letter-spacing: 4px; font-weight: bold; animation: titleGlow 1.2s ease-in-out; }
-        @keyframes splashFade { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes titleGlow { from { opacity: 0; text-shadow: 0 0 20px rgba(196, 30, 58, 0.3); } to { opacity: 1; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8), 0 4px 20px rgba(0,0,0,0.9); } }
+        .splash-content h1 { font-size: 8rem; margin-bottom: 3rem; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8); letter-spacing: 4px; font-weight: bold; animation: titleGlow 1.2s ease-in-out; }
+        .splash-content p { font-size: 1.2rem; color: #999; letter-spacing: 2px; margin-bottom: 3rem; }
+        @keyframes titleGlow { from { opacity: 0; text-shadow: 0 0 20px rgba(196, 30, 58, 0.3); } to { opacity: 1; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8); } }
         
         #main { opacity: 0; transform: scale(0.95); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         #main.show { opacity: 1; transform: scale(1); }
         
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); padding: 2rem; }
-        .hero h1 { font-size: 5rem; margin-bottom: 1rem; text-shadow: 0 4px 20px rgba(0,0,0,0.7); }
-        .hero p { font-size: 1.5rem; color: #aaa; margin-bottom: 2rem; }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); padding: 4rem 2rem; position: relative; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(196, 30, 58, 0.05) 0%, transparent 70%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-logo { max-width: 300px; margin: 0 auto 3rem; animation: logoFade 1s ease-in; }
+        .hero-logo img { width: 100%; height: auto; filter: drop-shadow(0 0 40px rgba(196, 30, 58, 0.3)); transition: filter 0.3s; }
+        .hero-logo img:hover { filter: drop-shadow(0 0 60px rgba(196, 30, 58, 0.6)); }
+        @keyframes logoFade { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; letter-spacing: 3px; font-weight: bold; }
+        .hero p { font-size: 1.1rem; color: #999; letter-spacing: 1px; margin-bottom: 3rem; }
         
-        .btn { padding: 15px 40px; background: #c41e3a; color: white; text-decoration: none; font-size: 1rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; display: inline-block; }
-        .btn:hover { background: #a01729; transform: translateY(-2px); box-shadow: 0 0 20px rgba(196, 30, 58, 0.5); }
+        .btn { padding: 15px 50px; background: #c41e3a; color: white; text-decoration: none; font-size: 0.95rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; display: inline-block; font-weight: bold; }
+        .btn:hover { background: #a01729; transform: translateY(-3px); box-shadow: 0 10px 40px rgba(196, 30, 58, 0.4); }
         
-        section { padding: 100px 2rem; max-width: 1200px; margin: 0 auto; }
-        section h2 { font-size: 3rem; margin-bottom: 2rem; color: #c41e3a; text-transform: uppercase; letter-spacing: 2px; }
-        section p { font-size: 1.1rem; color: #aaa; line-height: 1.8; max-width: 600px; margin-bottom: 2rem; }
+        section { padding: 120px 4rem; max-width: 1400px; margin: 0 auto; }
+        section h2 { font-size: 3.5rem; margin-bottom: 3rem; color: #c41e3a; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; }
+        section p { font-size: 1.1rem; color: #aaa; line-height: 1.8; max-width: 700px; margin-bottom: 2rem; }
         
-        #shop { background: #0a0a0a; border-top: 1px solid #333; }
+        #shop { background: #0a0a0a; border-top: 1px solid #222; border-bottom: 1px solid #222; }
         
-        /* POSTERS CAROUSEL */
-        #posters { background: #000; padding: 100px 2rem; }
-        #posters h2 { text-align: center; margin-bottom: 60px; }
+        /* FILMS GRID */
+        #films { background: #1a1a1a; border-top: 1px solid #222; }
+        #films h2 { text-align: center; }
         
-        .carousel-container { position: relative; height: 600px; perspective: 1000px; margin: 0 auto; max-width: 1000px; }
+        .films-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 60px; }
         
-        .carousel-track { display: flex; justify-content: center; align-items: center; height: 100%; position: relative; }
+        .film-tile { position: relative; overflow: hidden; border-radius: 2px; cursor: pointer; aspect-ratio: 2/3; }
+        .film-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .film-tile:hover img { transform: scale(1.05); }
         
-        .poster-item { position: absolute; width: 320px; height: 480px; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .film-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.95); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; opacity: 0; transition: opacity 0.3s; }
+        .film-tile:hover .film-overlay { opacity: 1; }
         
-        .poster-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); }
+        .film-title { font-size: 1.5rem; margin-bottom: 1rem; font-weight: bold; letter-spacing: 1px; }
+        .film-synopsis { font-size: 0.95rem; color: #aaa; line-height: 1.6; margin-bottom: 1.5rem; }
         
-        /* CENTER POSTER - SPOTLIT */
-        .poster-item.active { z-index: 10; transform: scale(1.1) translateY(-20px); filter: drop-shadow(0 0 40px rgba(196, 30, 58, 0.6)) brightness(1.2); }
-        .poster-item.active img { box-shadow: 0 0 80px rgba(196, 30, 58, 0.8), 0 20px 60px rgba(0,0,0,0.8); }
+        .film-buttons { display: flex; flex-direction: column; gap: 0.8rem; width: 100%; }
+        .film-btn { padding: 8px 16px; background: #c41e3a; color: white; text-decoration: none; font-size: 0.85rem; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; border-radius: 2px; }
+        .film-btn:hover { background: #a01729; }
         
-        /* SIDE POSTERS - DIMMED */
-        .poster-item.left { transform: translateX(-420px) scale(0.7); opacity: 0.4; filter: brightness(0.5); }
-        .poster-item.right { transform: translateX(420px) scale(0.7); opacity: 0.4; filter: brightness(0.5); }
-        .poster-item.far-left { transform: translateX(-650px) scale(0.5); opacity: 0.15; }
-        .poster-item.far-right { transform: translateX(650px) scale(0.5); opacity: 0.15; }
-        .poster-item.hidden { opacity: 0; pointer-events: none; }
+        /* PODCAST SECTION */
+        #podcast { background: #0a0a0a; border-top: 1px solid #222; }
         
-        /* GLOSSY FLOOR REFLECTION */
-        .carousel-reflection { position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); width: 400px; height: 150px; background: linear-gradient(to bottom, rgba(196, 30, 58, 0.3), transparent); filter: blur(20px); pointer-events: none; }
+        /* ANIMATION SECTION */
+        #animation { background: #1a1a1a; border-top: 1px solid #222; }
         
-        /* ARROWS */
-        .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 60px; height: 60px; background: rgba(196, 30, 58, 0.8); color: white; border: none; font-size: 24px; cursor: pointer; z-index: 20; transition: all 0.3s; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .carousel-arrow:hover { background: #c41e3a; transform: translateY(-50%) scale(1.1); box-shadow: 0 0 30px rgba(196, 30, 58, 0.8); }
-        .carousel-arrow.left { left: 20px; }
-        .carousel-arrow.right { right: 20px; }
+        /* FOOTER */
+        footer { background: #000; border-top: 1px solid #222; padding: 4rem; text-align: center; }
+        .social-links { margin: 2rem 0; display: flex; justify-content: center; gap: 2rem; }
+        .social-links a { color: #c41e3a; text-decoration: none; font-size: 1rem; transition: color 0.3s; }
+        .social-links a:hover { color: #fff; }
+        .footer-text { color: #666; font-size: 0.9rem; letter-spacing: 1px; }
         
-        #films { background: #1a1a1a; }
-        #podcast { background: #0a0a0a; }
-        
-        footer { background: #000; border-top: 1px solid #333; padding: 2rem; text-align: center; color: #aaa; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            nav { padding: 1rem 2rem; }
+            nav a { margin-left: 1.5rem; font-size: 0.8rem; }
+            section { padding: 80px 2rem; }
+            .films-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        }
     </style>
 </head>
 <body>
     <div id="splash">
         <div class="splash-content">
             <h1>REDSLATE FILMS</h1>
+            <p>Coming Soon</p>
             <button class="btn" onclick="enterSite()">Enter</button>
         </div>
     </div>
@@ -85,121 +95,104 @@
 
     <div id="main">
         <nav>
-            <div class="logo">REDSLATE</div>
+            <div class="logo-nav">REDSLATE</div>
             <div>
-                <a href="#shop">Shop</a>
-                <a href="#posters">Posters</a>
-                <a href="#films">Films</a>
-                <a href="#podcast">Podcast</a>
+                <a href="#shop">🛍️ Shop</a>
+                <a href="#films">🎬 Films</a>
+                <a href="#podcast">🎧 Podcast</a>
+                <a href="#animation">🎨 Animation</a>
             </div>
         </nav>
 
         <div class="hero">
-            <div>
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="redslate-films-logo.jpg" alt="Redslate Films Logo">
+                </div>
                 <h1>REDSLATE FILMS</h1>
-                <p>Coming Soon</p>
+                <p>Narrative Cinema</p>
             </div>
         </div>
 
         <section id="shop">
-            <h2>Shop</h2>
-            <p>Official Redslate Films merch. T-shirts, sweatshirts, hats, scarves, and more.</p>
+            <h2>🛍️ Shop</h2>
+            <p>Official Redslate Films merchandise. Limited edition apparel for film lovers and independent cinema enthusiasts.</p>
             <a href="https://www.bonfire.com/store/redslate-films/" target="_blank" class="btn">Shop Now</a>
         </section>
 
-        <!-- POSTERS CAROUSEL -->
-        <section id="posters">
-            <h2>Posters</h2>
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack"></div>
-                <button class="carousel-arrow left" onclick="prevPoster()">‹</button>
-                <button class="carousel-arrow right" onclick="nextPoster()">›</button>
-                <div class="carousel-reflection"></div>
-            </div>
-        </section>
-
         <section id="films">
-            <h2>Films</h2>
-            <p>Narrative cinema. Independent. Uncompromising.</p>
-            <p>Coming Soon</p>
+            <h2>🎬 Films</h2>
+            <div class="films-grid" id="filmsGrid"></div>
         </section>
 
         <section id="podcast">
-            <h2>Actor to Actor Podcast</h2>
-            <p>In-depth conversations between actors. Raw, honest, unfiltered.</p>
-            <p>Coming Soon</p>
+            <h2>🎧 Actor to Actor Podcast</h2>
+            <p>In-depth conversations between actors. Raw, honest, unfiltered dialogue about craft, collaboration, and creation.</p>
+            <p style="margin-top: 2rem; color: #888;">Coming Soon</p>
+        </section>
+
+        <section id="animation">
+            <h2>🎨 Animation</h2>
+            <p>Animated series in development. Innovative storytelling through animation.</p>
+            <p style="margin-top: 2rem; color: #888;">Coming Soon</p>
         </section>
 
         <footer>
-            <p>&copy; 2026 Redslate Films. All rights reserved.</p>
+            <p class="footer-text">REDSLATE FILMS</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/RedSlateFilms" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/redslatefilms1/" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@redslated.films.o" target="_blank">TikTok</a>
+            </div>
+            <p class="footer-text" style="margin-top: 2rem;">&copy; 2026 Redslate Films. All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        const posters = [
-            '01_Waking_Moments.JPG',
-            '02.5_Quietus_Poster.jpg',
-            '02_Done_Waiting_2019.jpg',
-            '03_Enough_Poster.jpg',
-            '04_Channel_Theory.JPG',
-            '05_TLM.jpg',
-            '06_SnN.jpg',
-            '07_Stillhaven.jpg',
-            '08_Luminous_Dreams.jpg',
-            '09_Children_As_Giants.PNG',
-            '10_Bereavement.JPEG',
-            '11_The_Transmission.JPG',
-            '12_Redneck_Ghost_Ranglers.PNG',
-            '13_Done_Waiting.JPG',
-            '14_War_Between_States.JPG',
-            '15_Hexerei.jpeg',
-            '16_Blowback.JPG',
-            '17_A_Quiet_Town_POC.JPEG',
-            '18_A_Quiet_Town.jpg'
+        const filmsData = [
+            { file: '01_Waking_Moments.JPG', title: 'Waking Moments', synopsis: "A wife and mother's tragic loss brings life's diverse moments into clear and painful focus." },
+            { file: '02.5_Quietus_Poster.jpg', title: 'Quietus', synopsis: 'After a devastating car accident leaves them stranded on a deserted rural road, a young couple seeks refuge in a lonely farmhouse, only to discover they may have crossed into a place where the dead are forced to confront what they left behind.' },
+            { file: '03_Enough_Poster.jpg', title: 'Enough', synopsis: 'Emma takes James on a romantic weekend getaway but past problems and present secrets threaten the survival of their relationship.' },
+            { file: '04_Channel_Theory.JPG', title: 'Channel Theory', synopsis: 'A professional organizer attempts a new experiment known as "Channel Theory", but things turns for the worse as a new story is set to unfold and a glitch in the system could cost him everything.' },
+            { file: '05_TLM.jpg', title: 'TLM', synopsis: 'A case of mistaken identity leads to tragic results as a man on the run from the police is seemingly left with no choice.' },
+            { file: '06_SnN.jpg', title: 'Strings and Noise', synopsis: 'A recovering alcoholic musician falls back into his old ways after a devastating conversation and ultimately tries to get things back on the right track.' },
+            { file: '07_Stillhaven.jpg', title: 'Stillhaven', synopsis: 'Jess hunts down the people responsible for the murder of her parents.' },
+            { file: '08_Luminous_Dreams.jpg', title: 'Luminous Dreams', synopsis: 'A small, single-screen theater is saved from permanent closure when a stranger in town for business presents an unexpected solution.' },
+            { file: '09_Children_As_Giants.PNG', title: 'Children As Giants', synopsis: 'Living with his older brother and his fantasy world while dealing with the added heartbreak of his son takes Declan on a journey where the only way to move forward is to accept fantasy as reality.' },
+            { file: '10_Bereavement.JPEG', title: 'Bereavement', synopsis: 'A woman must deal with the loss of a loved one.' },
+            { file: '11_The_Transmission.JPG', title: 'The Transmission', synopsis: 'A father and daughter follow a mysterious signal deep within the woods to discover something that might not be of this world.' },
+            { file: '12_Redneck_Ghost_Ranglers.PNG', title: 'Redneck Ghost Ranglers', synopsis: 'A group of ghost enthusiasts take their first real gig. As the night unfolds they may not want to hunt ghost again.' },
+            { file: '13_Done_Waiting.JPG', title: 'Done Waiting', synopsis: 'No longer willing to wait for the police to find his missing wife, a husband decides to take matters into his own hands and search for the people responsible for his wife\'s kidnapping. An old friend resurfaces and ends up helping him on his quest for vengeance.', hasLinks: true },
+            { file: '14_War_Between_States.JPG', title: 'War Between States', synopsis: 'As the Civil War rages on, a Colonel leads his men during the battle of Gettysburg. He comes face to face with a Confederate soldier who helps him see the truth about what they\'re actually fighting for.' },
+            { file: '15_Hexerei.jpeg', title: 'Hexerei', synopsis: 'A coven of witches seek to conjure a deity. Instead they got something they didn\'t expect.' },
+            { file: '16_Blowback.JPG', title: 'Blowback', synopsis: 'After a shooting, a high school principal must come to grips with the fallout of the tragic event.' },
+            { file: '17_A_Quiet_Town_POC.JPEG', title: 'A Quiet Town (Proof of Concept)', synopsis: 'A man caught in the life of crime with his hardened brother Zeke fights to get out of the game by any means necessary. After a botched bank heist things begin to spiral out of control with everything he loves on the line.' },
+            { file: '18_A_Quiet_Town.jpg', title: 'A Quiet Town', synopsis: 'After covering up his brother\'s deadly mistake, a small-town criminal forces him into a desperate bank heist to repay the debt. When the plan unravels, betrayal and violence erupt, tearing through their quiet Pennsylvania town.' }
         ];
 
-        let currentIndex = 17; // Start on A Quiet Town (latest)
-
-        function initCarousel() {
-            const track = document.getElementById('carouselTrack');
-            posters.forEach((poster, index) => {
-                const item = document.createElement('div');
-                item.className = 'poster-item';
-                item.innerHTML = `<img src="posters/${poster}" alt="Poster ${index + 1}">`;
-                track.appendChild(item);
+        function initFilmsGrid() {
+            const grid = document.getElementById('filmsGrid');
+            filmsData.forEach((film) => {
+                const tile = document.createElement('div');
+                tile.className = 'film-tile';
+                tile.innerHTML = `
+                    <img src="posters/${film.file}" alt="${film.title}">
+                    <div class="film-overlay">
+                        <div class="film-title">${film.title}</div>
+                        <div class="film-synopsis">${film.synopsis}</div>
+                        ${film.hasLinks ? `
+                        <div class="film-buttons">
+                            <a href="https://tubitv.com/movies/100031631/done-waiting" target="_blank" class="film-btn">Watch on Tubi</a>
+                            <a href="https://fawesome.tv/movies/10649763/done-waiting" target="_blank" class="film-btn">Watch on Fawesome</a>
+                            <a href="https://www.walmart.com/ip/Done-Waiting-Blu-ray-Burning-Bulb-Mystery-Suspense/13641550615?classType=REGULAR" target="_blank" class="film-btn">Walmart</a>
+                            <a href="https://www.amazon.com/Done-Waiting-Blu-ray-Jesse-Hutchins/dp/B0DJVF3WNF/ref=sr_1_2?crid=PG4BNJDM4HJW&dib=eyJ2IjoiMSJ9.zliYmvychYg9HnJod52Xs3M3bZTG-3LqnfPWi-qwzgOmOqqjRUXJ4_VpUw-HnutGEJqtT9k9PGWdgaNHMsJgOqIb1lUSS9KN2O3sjSYRorIrDvIzi_XQbBtrCEF1BA4rCdDMNTQ87_cCVbYbGBTOLMsbJU-PnMA1Lftv_g7c4DIszfQekvSanUc4vmFrnEILGufRbkLBr1qKLMtrgxOprAkmnBExVF6kcZ6bChHJqoM.d4_CE30wdFQpG1Aenejs4gbmFMV7N5vEyPs_fNuadxA&dib_tag=se&keywords=Done+Waiting&qid=1780584632&sprefix=done+waiting%2Caps%2C510&sr=8-2" target="_blank" class="film-btn">Amazon</a>
+                            <a href="https://tv.apple.com/us/movie/done-waiting/umc.cmc.1y25mtw88kdckw6eadcni5nkd" target="_blank" class="film-btn">Apple TV</a>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+                grid.appendChild(tile);
             });
-            updateCarousel();
-        }
-
-        function updateCarousel() {
-            const items = document.querySelectorAll('.poster-item');
-            items.forEach((item, index) => {
-                item.className = 'poster-item';
-                
-                if (index === currentIndex) {
-                    item.classList.add('active');
-                } else if (index === (currentIndex - 1 + posters.length) % posters.length) {
-                    item.classList.add('left');
-                } else if (index === (currentIndex + 1) % posters.length) {
-                    item.classList.add('right');
-                } else if (index === (currentIndex - 2 + posters.length) % posters.length) {
-                    item.classList.add('far-left');
-                } else if (index === (currentIndex + 2) % posters.length) {
-                    item.classList.add('far-right');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        }
-
-        function nextPoster() {
-            currentIndex = (currentIndex + 1) % posters.length;
-            updateCarousel();
-        }
-
-        function prevPoster() {
-            currentIndex = (currentIndex - 1 + posters.length) % posters.length;
-            updateCarousel();
         }
 
         function enterSite() {
@@ -213,7 +206,7 @@
             }, 100);
         }
 
-        window.addEventListener('load', initCarousel);
+        window.addEventListener('load', initFilmsGrid);
     </script>
 </body>
 </html>
