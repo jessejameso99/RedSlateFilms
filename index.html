@@ -59,6 +59,10 @@
         .social a:hover { color: #fff; }
         .copyright { font-size: 0.9rem; color: #666; margin-top: 2rem; }
         
+        #backToTop { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: #c41e3a; color: #fff; border: none; font-size: 1.5rem; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 99; font-weight: bold; font-family: 'Courier Prime'; transition: all 0.3s; }
+        #backToTop.show { display: flex; }
+        #backToTop:hover { background: #fff; color: #000; box-shadow: 0 0 40px #c41e3a; }
+        
         @media (max-width: 768px) {
             nav { padding: 1.5rem 2rem; }
             nav a { margin-left: 1rem; font-size: 0.75rem; }
@@ -67,6 +71,7 @@
             section { padding: 80px 2rem; }
             section h2 { font-size: 3rem; }
             .grid { grid-template-columns: 1fr; }
+            #backToTop { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -98,7 +103,7 @@
             <div class="hero-logo"><img src="redslate-films-logo.jpg" alt="Redslate Films"></div>
             <h1>REDSLATE FILMS</h1>
             <p class="hero-tagline">Stories Worth Remembering</p>
-            <button class="btn" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">EXPLORE</button>
+            <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">EXPLORE</button>
         </div>
     </div>
 
@@ -144,6 +149,8 @@
         </div>
         <p class="copyright">&copy; 2026 Redslate Films</p>
     </footer>
+
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
     <script>
         const shorts = [
@@ -210,6 +217,10 @@
             document.getElementById('audio').play().catch(() => {});
             document.getElementById('splash').classList.add('hidden');
         }
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('backToTop').classList.toggle('show', window.scrollY > 300);
+        });
 
         buildGrid(shorts, 'shortsGrid');
         buildGrid(features, 'featuresGrid');
