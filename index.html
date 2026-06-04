@@ -13,9 +13,11 @@
         nav a:hover { color: #c41e3a; }
         .logo { font-size: 1.3rem; font-weight: bold; letter-spacing: 2px; }
         
-        #splash { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        #splash { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); animation: splashFade 0.8s ease-in; }
         #splash.hidden { opacity: 0; transform: scale(1.05); display: none; }
-        .splash-content h1 { font-size: 5rem; margin-bottom: 2rem; text-shadow: 0 4px 20px rgba(0,0,0,0.7); }
+        .splash-content h1 { font-size: 8rem; margin-bottom: 2rem; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8), 0 4px 20px rgba(0,0,0,0.9); letter-spacing: 4px; font-weight: bold; animation: titleGlow 1.2s ease-in-out; }
+        @keyframes splashFade { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes titleGlow { from { opacity: 0; text-shadow: 0 0 20px rgba(196, 30, 58, 0.3); } to { opacity: 1; text-shadow: 0 0 60px rgba(196, 30, 58, 0.8), 0 4px 20px rgba(0,0,0,0.9); } }
         
         #main { opacity: 0; transform: scale(0.95); transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
         #main.show { opacity: 1; transform: scale(1); }
@@ -32,6 +34,39 @@
         section p { font-size: 1.1rem; color: #aaa; line-height: 1.8; max-width: 600px; margin-bottom: 2rem; }
         
         #shop { background: #0a0a0a; border-top: 1px solid #333; }
+        
+        /* POSTERS CAROUSEL */
+        #posters { background: #000; padding: 100px 2rem; }
+        #posters h2 { text-align: center; margin-bottom: 60px; }
+        
+        .carousel-container { position: relative; height: 600px; perspective: 1000px; margin: 0 auto; max-width: 1000px; }
+        
+        .carousel-track { display: flex; justify-content: center; align-items: center; height: 100%; position: relative; }
+        
+        .poster-item { position: absolute; width: 320px; height: 480px; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        
+        .poster-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); }
+        
+        /* CENTER POSTER - SPOTLIT */
+        .poster-item.active { z-index: 10; transform: scale(1.1) translateY(-20px); filter: drop-shadow(0 0 40px rgba(196, 30, 58, 0.6)) brightness(1.2); }
+        .poster-item.active img { box-shadow: 0 0 80px rgba(196, 30, 58, 0.8), 0 20px 60px rgba(0,0,0,0.8); }
+        
+        /* SIDE POSTERS - DIMMED */
+        .poster-item.left { transform: translateX(-420px) scale(0.7); opacity: 0.4; filter: brightness(0.5); }
+        .poster-item.right { transform: translateX(420px) scale(0.7); opacity: 0.4; filter: brightness(0.5); }
+        .poster-item.far-left { transform: translateX(-650px) scale(0.5); opacity: 0.15; }
+        .poster-item.far-right { transform: translateX(650px) scale(0.5); opacity: 0.15; }
+        .poster-item.hidden { opacity: 0; pointer-events: none; }
+        
+        /* GLOSSY FLOOR REFLECTION */
+        .carousel-reflection { position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); width: 400px; height: 150px; background: linear-gradient(to bottom, rgba(196, 30, 58, 0.3), transparent); filter: blur(20px); pointer-events: none; }
+        
+        /* ARROWS */
+        .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 60px; height: 60px; background: rgba(196, 30, 58, 0.8); color: white; border: none; font-size: 24px; cursor: pointer; z-index: 20; transition: all 0.3s; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .carousel-arrow:hover { background: #c41e3a; transform: translateY(-50%) scale(1.1); box-shadow: 0 0 30px rgba(196, 30, 58, 0.8); }
+        .carousel-arrow.left { left: 20px; }
+        .carousel-arrow.right { right: 20px; }
+        
         #films { background: #1a1a1a; }
         #podcast { background: #0a0a0a; }
         
@@ -46,13 +81,14 @@
         </div>
     </div>
 
-    <audio id="fanfare" src="audio/MECHMisc_Projector_Antique_B_On_Run_Off_05_BOURNE_SB-ANT_PnyfS.wav"></audio>
+    <audio id="fanfare" preload="auto"></audio>
 
     <div id="main">
         <nav>
             <div class="logo">REDSLATE</div>
             <div>
                 <a href="#shop">Shop</a>
+                <a href="#posters">Posters</a>
                 <a href="#films">Films</a>
                 <a href="#podcast">Podcast</a>
             </div>
@@ -69,6 +105,17 @@
             <h2>Shop</h2>
             <p>Official Redslate Films merch. T-shirts, sweatshirts, hats, scarves, and more.</p>
             <a href="https://www.bonfire.com/store/redslate-films/" target="_blank" class="btn">Shop Now</a>
+        </section>
+
+        <!-- POSTERS CAROUSEL -->
+        <section id="posters">
+            <h2>Posters</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack"></div>
+                <button class="carousel-arrow left" onclick="prevPoster()">‹</button>
+                <button class="carousel-arrow right" onclick="nextPoster()">›</button>
+                <div class="carousel-reflection"></div>
+            </div>
         </section>
 
         <section id="films">
@@ -89,14 +136,84 @@
     </div>
 
     <script>
+        const posters = [
+            '01_Waking_Moments.JPG',
+            '02.5_Quietus_Poster.jpg',
+            '02_Done_Waiting_2019.jpg',
+            '03_Enough_Poster.jpg',
+            '04_Channel_Theory.JPG',
+            '05_TLM.jpg',
+            '06_SnN.jpg',
+            '07_Stillhaven.jpg',
+            '08_Luminous_Dreams.jpg',
+            '09_Children_As_Giants.PNG',
+            '10_Bereavement.JPEG',
+            '11_The_Transmission.JPG',
+            '12_Redneck_Ghost_Ranglers.PNG',
+            '13_Done_Waiting.JPG',
+            '14_War_Between_States.JPG',
+            '15_Hexerei.jpeg',
+            '16_Blowback.JPG',
+            '17_A_Quiet_Town_POC.JPEG',
+            '18_A_Quiet_Town.jpg'
+        ];
+
+        let currentIndex = 17; // Start on A Quiet Town (latest)
+
+        function initCarousel() {
+            const track = document.getElementById('carouselTrack');
+            posters.forEach((poster, index) => {
+                const item = document.createElement('div');
+                item.className = 'poster-item';
+                item.innerHTML = `<img src="posters/${poster}" alt="Poster ${index + 1}">`;
+                track.appendChild(item);
+            });
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const items = document.querySelectorAll('.poster-item');
+            items.forEach((item, index) => {
+                item.className = 'poster-item';
+                
+                if (index === currentIndex) {
+                    item.classList.add('active');
+                } else if (index === (currentIndex - 1 + posters.length) % posters.length) {
+                    item.classList.add('left');
+                } else if (index === (currentIndex + 1) % posters.length) {
+                    item.classList.add('right');
+                } else if (index === (currentIndex - 2 + posters.length) % posters.length) {
+                    item.classList.add('far-left');
+                } else if (index === (currentIndex + 2) % posters.length) {
+                    item.classList.add('far-right');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function nextPoster() {
+            currentIndex = (currentIndex + 1) % posters.length;
+            updateCarousel();
+        }
+
+        function prevPoster() {
+            currentIndex = (currentIndex - 1 + posters.length) % posters.length;
+            updateCarousel();
+        }
+
         function enterSite() {
-            document.getElementById('fanfare').play();
+            const audio = document.getElementById('fanfare');
+            audio.src = 'audio/MECHMisc_Projector_Antique_B_On_Run_Off_05_BOURNE_SB-ANT_PnyfS.wav';
+            audio.play().catch(e => console.log('Audio play failed:', e));
             document.getElementById('splash').classList.add('hidden');
             document.getElementById('main').classList.add('show');
             setTimeout(() => {
                 document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
             }, 100);
         }
+
+        window.addEventListener('load', initCarousel);
     </script>
 </body>
 </html>
