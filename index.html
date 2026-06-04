@@ -249,3 +249,15 @@
             document.getElementById('splash').classList.add('hidden');
             document.getElementById('main').classList.add('show');
             setTimeout(() => {
+                document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        window.addEventListener('load', () => {
+            buildGrid(shortsData, 'shortsGrid');
+            buildGrid(featuresData, 'featuresGrid');
+            buildEvents();
+        });
+    </script>
+</body>
+</html>
