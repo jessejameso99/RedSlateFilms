@@ -73,17 +73,16 @@
         }
         
         .hero { 
-            padding: 8rem 5rem 0 5rem;
+            padding: 8rem 5rem 5rem 5rem;
             background: #000 !important;
             margin-top: 0;
+            border-bottom: 3px solid #c41e3a;
         }
         
-        .trailer-showcase { 
+        .trailer-grid { 
             display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 50px; 
-            padding: 0 0 50px 0;
-            border-bottom: 3px solid #c41e3a;
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
         }
         
         .trailer-box { 
@@ -94,6 +93,7 @@
             border-radius: 16px;
             overflow: hidden;
             background: #000;
+            cursor: pointer;
         }
         
         .trailer-box iframe { 
@@ -104,14 +104,14 @@
         
         .trailer-box h3 { 
             position: absolute; 
-            bottom: 20px; 
-            left: 20px; 
+            bottom: 25px; 
+            left: 25px; 
             font-family: 'Bebas Neue'; 
-            font-size: 2.5rem; 
+            font-size: 2.2rem; 
             letter-spacing: 3px; 
             color: #c41e3a; 
             font-weight: bold;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            text-shadow: 0 3px 15px rgba(0,0,0,0.9);
             z-index: 10;
         }
         
@@ -343,12 +343,15 @@
             color: #c41e3a;
         }
         
+        @media (max-width: 1024px) {
+            .trailer-grid { grid-template-columns: 1fr; }
+        }
+        
         @media (max-width: 768px) {
             nav { padding: 1rem 2rem; }
             nav a { margin-left: 1.5rem; font-size: 0.65rem; }
-            .hero { padding: 8rem 1rem 0 1rem; }
-            .trailer-showcase { padding: 0 0 30px 0; gap: 30px; }
-            .trailer-box h3 { font-size: 1.8rem; }
+            .hero { padding: 8rem 1rem 2rem 1rem; }
+            .trailer-box h3 { font-size: 1.5rem; }
             section { padding: 60px 2rem; }
             section h2 { font-size: 2.2rem; }
             .grid { grid-template-columns: 1fr; gap: 25px; }
@@ -381,13 +384,13 @@
     </nav>
 
     <div class="hero">
-        <div class="trailer-showcase">
+        <div class="trailer-grid">
             <div class="trailer-box">
-                <iframe src="https://player.vimeo.com/video/1028149661?autoplay=1&muted=1&loop=0" allowfullscreen allow="autoplay"></iframe>
+                <iframe src="PASTE_A_QUIET_TOWN_EMBED_URL_HERE" allowfullscreen allow="autoplay"></iframe>
                 <h3>A QUIET TOWN</h3>
             </div>
             <div class="trailer-box">
-                <iframe src="https://player.vimeo.com/video/1017628905?autoplay=0&muted=1" allowfullscreen allow="autoplay"></iframe>
+                <iframe src="PASTE_DONE_WAITING_EMBED_URL_HERE" allowfullscreen allow="autoplay"></iframe>
                 <h3>DONE WAITING</h3>
             </div>
         </div>
