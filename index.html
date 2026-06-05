@@ -374,7 +374,7 @@
         </div>
     </div>
 
-    <audio id="MECHMisc_Projector Antique B On Run Off 05_BOURNE_SB-ANT_PnyfS.wav" preload="auto"></audio>
+    <audio id="projectorAudio" preload="auto"></audio>
     <audio id="audio" preload="auto"></audio>
 
     <nav>
@@ -455,7 +455,7 @@
             {file: '04_Channel_Theory.JPG', title: 'Channel Theory', synopsis: 'A professional organizer attempts a new experiment known as "Channel Theory", but things turns for the worse as a new story is set to unfold and a glitch in the system could cost him everything.'},
             {file: '05_TLM.jpg', title: 'TLM', synopsis: 'A case of mistaken identity leads to tragic results as a man on the run from the police is seemingly left with no choice.'},
             {file: '06_SnN.jpg', title: 'Strings and Noise', synopsis: 'A recovering alcoholic musician falls back into his old ways after a devastating conversation and ultimately tries to get things back on the right track.'},
-            {file: '07_Stillhaven.jpg', title: 'Stillhaven', synopsis: 'Jess hunts down those responsible for the murder of her parents.'},
+            {file: '07_Stillhaven.jpg', title: 'Stillhaven', synopsis: 'Jess hunts down the people responsible for the murder of her parents.'},
             {file: '08_Luminous_Dreams.jpg', title: 'Luminous Dreams', synopsis: 'A small, single-screen theater is saved from permanent closure when a stranger in town for business presents an unexpected solution.'},
             {file: '09_Children_As_Giants.PNG', title: 'Children As Giants', synopsis: 'Living with his older brother and his fantasy world while dealing with the added heartbreak of his son takes Declan on a journey where the only way to move forward is to accept fantasy as reality.'},
             {file: '10_Bereavement.JPEG', title: 'Bereavement', synopsis: 'A woman must deal with the loss of a loved one.'},
@@ -517,7 +517,7 @@
         }
 
         function goSite() {
-            document.getElementById('audio').src = 'audio/MECHMisc_Projector_Antique_B_On_Run_Off_05_BOURNE_SB-ANT_PnyfS.wav';
+            document.getElementById('audio').src = 'audio/MECHMisc_Projector Antique B On Run Off 05_BOURNE_SB-ANT_PnyfS.wav';
             document.getElementById('audio').play().catch(() => {});
             document.getElementById('splash').classList.add('hidden');
         }
@@ -533,7 +533,7 @@
         });
 
         window.addEventListener('load', () => {
-            document.getElementById('projectorAudio').src = 'audio/MECHMisc_Projector_Antique_B_On_Run_Off_05_BOURNE_SB-ANT_PnyfS.wav';
+            document.getElementById('projectorAudio').src = 'audio/MECHMisc_Projector Antique B On Run Off 05_BOURNE_SB-ANT_PnyfS.wav';
             document.getElementById('projectorAudio').play().catch(() => {});
             buildGrid(shorts, 'shortsGrid');
             buildGrid(features, 'featuresGrid');
